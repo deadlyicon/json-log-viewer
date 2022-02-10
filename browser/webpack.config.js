@@ -8,6 +8,11 @@ module.exports = {
     filename: 'index.js',
     path: Path.resolve(__dirname, 'dist'),
   },
+  resolve: {
+    alias: {
+      // 'normalize.css': 'normalize.css/normalize.css',
+    },
+  },
   plugins: [
     new HtmlWebpackPlugin({
 
@@ -25,7 +30,15 @@ module.exports = {
             cacheDirectory: true,
           }
         }
-      }
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          "style-loader",
+          "css-loader",
+          "sass-loader",
+        ],
+      },
     ]
   },
 };

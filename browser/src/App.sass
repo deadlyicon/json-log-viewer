@@ -1,0 +1,52 @@
+@import "~normalize.css/normalize.css"
+
+// http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+html
+  box-sizing: border-box
+  overflow-y: auto
+  -webkit-overflow-scrolling: touch
+  min-width: 320px
+  // fix lame bottom scrollbars showing up on windows
+  overflow-x: hidden
+
+*, *:before, *:after
+  // box-sizing: inherit
+  box-sizing: border-box
+  -webkit-font-smoothing: antialiased
+  font-smoothing: antialiased
+  text-rendering: optimizeLegibility
+
+body
+  -moz-osx-font-smoothing: grayscale
+  margin: 0
+  font-family: system-ui
+
+// just in case ;)
+.undefined
+  outine-color: red
+  outine-style: double
+  outine-width: 10px
+  outline-offset: -5px
+
+.App
+  background-color: pink
+  display: flex
+  flex-direction: column
+  height: 100vh
+  width: 100vw
+  overflow: hidden
+  &-Banner, &-Footer
+    background-color: black
+    color: white
+    text-align: center
+    padding: 4px 1em
+
+  &-Banner
+  &-Controls
+    background-color: orange
+  &-LogsList
+    background-color: yellow
+    flex: 1 1
+    overflow: auto
+  &-Footer
+    font-size: 80%

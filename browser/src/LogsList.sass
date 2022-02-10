@@ -1,21 +1,31 @@
 .LogsList
+  position: relative
   outline: 1px dotted red
   &-Entry
-    height: 20px
-    border-bottom: 1px solid black
+    height: 25px
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25)
     overflow: hidden
     display: flex
     flex-wrap: nowrap
+    align-items: center
+    cursor: pointer
     > *
       flex: 0 0 auto
+      margin-right: 0.5rem
     &-buttons
       // flex: 0 0 auto
+      > *
+        border: none
+        outline: none
+        padding: 2px 0.3rem
     &-json
       flex: 1 1 auto
-    > .Timestamp
+    &-timestamp
       flex-basis: 200px
-    > .LogLevel
-      flex-basis: 200px
+    &-logLevel
+      flex-basis: 80px
+    &-message
+      flex-grow: 1
     // > *
     //   flex: 0 0 auto
     //   &:nth-child(1)
@@ -23,3 +33,18 @@
     //   // &:nth-child(2)
     //   //   flex: 0 0 20%
 
+  &-SelectedEntry
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    width: 40vw
+    // min-width: 30vw
+    // max-width: 90vw
+    background-color: white
+    border-left: 1px solid black
+    textarea
+      height: 50%
+      width: 100%
+      display: block
+      white-space: pre

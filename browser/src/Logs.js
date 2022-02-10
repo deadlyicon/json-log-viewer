@@ -4,8 +4,10 @@ const LOGS_IN_MEMORY = new Set()
 global.LOGS_IN_MEMORY = LOGS_IN_MEMORY
 
 let keySeq = 0
-function addLogEntry(entry){
-  LOGS_IN_MEMORY.add({...entry, __key: keySeq++ })
+function addLogEntry(json){
+  if (json === '') return
+  const [parseError, entry] = safeJSONparse(json)
+  LOGS_IN_MEMORY.add([keySeq++, parseError, entry, json])
   useLogs.pubDeferred()
 }
 
@@ -55,12 +57,8 @@ function readFileAsText(file){
 async function importLogsFromFile(file){
   const text = await readFileAsText(file)
   const lines = text.split("\n")
-  for (const json of lines){
-    if (json === '') continue
-    const [parseError, entry] = safeJSONparse(json)
-    if (parseError) console.error(`failed to json parse "${json}"`, parseError)
-    if (entry) addLogEntry(entry)
-  }
+  for (const line of lines)
+    if (line) addLogEntry(line)
 }
 
 function safeJSONparse(json){

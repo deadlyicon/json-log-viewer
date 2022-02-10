@@ -1,0 +1,19 @@
+{
+  "name": "json-log-viewer-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "./scripts/start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "chalk": "^5.0.0",
+    "concurrently": "^7.0.0",
+    "electron": "^17.0.0",
+    "electron-builder": "^22.14.13",
+    "electron-devtools-installer": "^3.2.0"
+  }
+}

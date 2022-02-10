@@ -1,10 +1,9 @@
 import * as React from 'react'
-
 import { promptToUpload } from './Logs'
 import LogsList from './LogsList'
 import './App.sass'
 
-export default function App(props){
+export default function App(){
   return <div className="App">
     <div className="App-Banner">
       JSON Log Viewer

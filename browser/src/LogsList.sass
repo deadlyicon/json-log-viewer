@@ -1,1 +1,25 @@
 .LogsList
+  outline: 1px dotted red
+  &-Entry
+    height: 20px
+    border-bottom: 1px solid black
+    overflow: hidden
+    display: flex
+    flex-wrap: nowrap
+    > *
+      flex: 0 0 auto
+    &-buttons
+      // flex: 0 0 auto
+    &-json
+      flex: 1 1 auto
+    > .Timestamp
+      flex-basis: 200px
+    > .LogLevel
+      flex-basis: 200px
+    // > *
+    //   flex: 0 0 auto
+    //   &:nth-child(1)
+    //     flex: 0 0 auto
+    //   // &:nth-child(2)
+    //   //   flex: 0 0 20%
+

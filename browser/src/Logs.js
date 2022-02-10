@@ -1,24 +1,13 @@
 import { createPubSub } from './helpers'
 
 const LOGS_IN_MEMORY = new Set()
+global.LOGS_IN_MEMORY = LOGS_IN_MEMORY
 
 let keySeq = 0
 function addLogEntry(entry){
   LOGS_IN_MEMORY.add({...entry, __key: keySeq++ })
   useLogs.pubDeferred()
 }
-// const writableStream = new WritableStream({
-//   write(chunk){
-//     console.log('LOGS WS', chunk.toString())
-//   },
-//   close(){
-//     console.log('LOGS WS close')
-//   },
-//   abort(error){
-//     console.log('LOGS WS abort', error)
-//   },
-// })
-
 
 export async function promptToUpload(){
   let fileHandles = await showOpenFilePicker({
@@ -67,8 +56,10 @@ async function importLogsFromFile(file){
   const text = await readFileAsText(file)
   const lines = text.split("\n")
   for (const json of lines){
+    if (json === '') continue
     const [parseError, entry] = safeJSONparse(json)
-    addLogEntry(entry)
+    if (parseError) console.error(`failed to json parse "${json}"`, parseError)
+    if (entry) addLogEntry(entry)
   }
 }
 
@@ -79,7 +70,6 @@ function safeJSONparse(json){
 
 export function useLogs(){
   useLogs.useSub()
-  const logs = [...LOGS_IN_MEMORY]
-  return logs
+  return LOGS_IN_MEMORY
 }
 Object.assign(useLogs, createPubSub())
